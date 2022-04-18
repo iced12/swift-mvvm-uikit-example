@@ -55,8 +55,6 @@ private extension UsersListView {
             tableView.widthAnchor.constraint(equalToConstant: 375),
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
             tableView.leftAnchor.constraint(equalTo: self.leftAnchor)
-//            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
-//            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
         ]
         NSLayoutConstraint.activate(constraints)
     }

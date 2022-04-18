@@ -21,10 +21,14 @@ final class MainContainer {
 
     static func makeUserListView() -> UsersListViewController {
         let fetchUserListUseCase = FetchUserListUseCaseImpl(repository: userRepository)
+        let sortUserUseCase = SortUserItemsUseCaseImpl()
         return UsersListViewController(
             view: UsersListView(),
-            viewModel: UsersListViewModel(userListUseCase: fetchUserListUseCase)
+            viewModel: UsersListViewModel(
+                userListUseCase: fetchUserListUseCase,
+                sortUserItemsUseCase: sortUserUseCase
             )
+        )
     }
 
     static func makeUserDetailsView(with user: User) -> UserDetailsViewController {

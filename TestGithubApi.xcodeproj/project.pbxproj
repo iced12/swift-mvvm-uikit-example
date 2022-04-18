@@ -24,6 +24,8 @@
 		3F2A94D3280D790300190C3B /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94D2280D790300190C3B /* UserDetailsViewModel.swift */; };
 		3F2A94D7280D9E6500190C3B /* LoaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94D6280D9E6500190C3B /* LoaderCell.swift */; };
 		3F2A94D9280D9E7000190C3B /* LoaderCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94D8280D9E7000190C3B /* LoaderCellView.swift */; };
+		3F2A94DF280DB1D800190C3B /* OrganizeUserItemsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94DE280DB1D800190C3B /* OrganizeUserItemsUseCase.swift */; };
+		3F3F4194280DD8E400900287 /* UserItemCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3F4193280DD8E400900287 /* UserItemCellType.swift */; };
 		3F9C706B280359D80096E21F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C706A280359D80096E21F /* AppDelegate.swift */; };
 		3F9C706D280359D80096E21F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C706C280359D80096E21F /* SceneDelegate.swift */; };
 		3F9C7074280359D90096E21F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F9C7073280359D90096E21F /* Assets.xcassets */; };
@@ -75,6 +77,8 @@
 		3F2A94D2280D790300190C3B /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
 		3F2A94D6280D9E6500190C3B /* LoaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCell.swift; sourceTree = "<group>"; };
 		3F2A94D8280D9E7000190C3B /* LoaderCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderCellView.swift; sourceTree = "<group>"; };
+		3F2A94DE280DB1D800190C3B /* OrganizeUserItemsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizeUserItemsUseCase.swift; sourceTree = "<group>"; };
+		3F3F4193280DD8E400900287 /* UserItemCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCellType.swift; sourceTree = "<group>"; };
 		3F9C7067280359D80096E21F /* TestGithubApi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestGithubApi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F9C706A280359D80096E21F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3F9C706C280359D80096E21F /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +182,7 @@
 			isa = PBXGroup;
 			children = (
 				3F2A94B1280C003E00190C3B /* UserList */,
+				3F2A94DE280DB1D800190C3B /* OrganizeUserItemsUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -341,6 +346,7 @@
 				3F9C715C28061D4F0096E21F /* UserItemCell.swift */,
 				3F9C7162280621A30096E21F /* UserItemCellView.swift */,
 				3F9C7164280621AD0096E21F /* UserItemCellViewModel.swift */,
+				3F3F4193280DD8E400900287 /* UserItemCellType.swift */,
 			);
 			path = UserItem;
 			sourceTree = "<group>";
@@ -502,6 +508,7 @@
 				3F2A94D1280D78FE00190C3B /* UserDetailsView.swift in Sources */,
 				3F9C715D28061D4F0096E21F /* UserItemCell.swift in Sources */,
 				3F2A94CA280C334100190C3B /* MainContainer.swift in Sources */,
+				3F3F4194280DD8E400900287 /* UserItemCellType.swift in Sources */,
 				3F2A94C5280C2F1400190C3B /* Collection+Safe.swift in Sources */,
 				3F2A94CF280D78F800190C3B /* UserDetailsViewController.swift in Sources */,
 				3F9C7163280621A30096E21F /* UserItemCellView.swift in Sources */,
@@ -512,6 +519,7 @@
 				3F2A94B9280C0FA800190C3B /* UserListResponse.swift in Sources */,
 				3F9C70A62805C5750096E21F /* UsersListViewController.swift in Sources */,
 				3F9C706D280359D80096E21F /* SceneDelegate.swift in Sources */,
+				3F2A94DF280DB1D800190C3B /* OrganizeUserItemsUseCase.swift in Sources */,
 				3F2A94D7280D9E6500190C3B /* LoaderCell.swift in Sources */,
 				3F9C70A42805C56D0096E21F /* UsersListView.swift in Sources */,
 				3F2A94B3280C004E00190C3B /* FetchUserListUseCase.swift in Sources */,

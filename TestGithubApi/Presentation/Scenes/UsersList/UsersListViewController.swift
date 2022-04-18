@@ -77,7 +77,6 @@ private extension UsersListViewController {
     }
 
     func bindView() {
-        //        mainView.button.addTarget(self, action: .buttonPressed, for: .touchUpInside)
     }
 
     func updateUsersList() {
@@ -87,7 +86,6 @@ private extension UsersListViewController {
     }
 
     func showError() {
-
     }
 }
 
@@ -120,30 +118,40 @@ private extension UsersListViewController {
 
 extension UsersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cellType = viewModel.userItemCells[safe: indexPath.row] else { return }
+        guard let cellType = viewModel.userItemCells.value(at: indexPath) else { return }
         if case let .userCellType(cellViewModel) = cellType {
             didSelect(user: cellViewModel.user)
         }
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Header"
+        viewModel.sortedKeys[safe: section]
     }
 }
 
 extension UsersListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        viewModel.userItemCells.keys.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.userItemCells.count
+        guard
+            let key = viewModel.sortedKeys[safe: section],
+            let values = viewModel.userItemCells[key]
+        else { return 0 }
+
+        return values.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellType = viewModel.userItemCells[safe: indexPath.row] else {
+        guard
+            let key = viewModel.sortedKeys[safe: indexPath.section],
+            let values = viewModel.userItemCells[key],
+            let cellType = values[safe: indexPath.row]
+        else {
             return UITableViewCell()
         }
+
         switch cellType {
         case let .userCellType(cellViewModel):
             let cell = tableView.getCell(ofType: UserItemCell.self)
@@ -155,12 +163,14 @@ extension UsersListViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        //TODO also check sections after sorting alphabetically
-        let totalItems = viewModel.userItemCells.count - 1
+        let lastKeyPosition = viewModel.sortedKeys.count - 1
 
-        let isLast = indexPath.row == totalItems
+        guard let lastSectionValues = viewModel.userItemCells.lastSectionValues else { return }
 
-        if isLast {
+        let isLastSection = indexPath.section == lastKeyPosition
+        let isLastRow = indexPath.row == lastSectionValues.count - 1
+
+        if isLastSection && isLastRow {
             viewModel.fetchNextPage(
                 onSuccess: updateUsersList,
                 onError: handleError
@@ -174,5 +184,39 @@ extension UsersListViewController: UITableViewDataSource {
 private extension UsersListViewController {
     func didSelect(user: User) {
         coordinatorDelegate?.didSelect(user: user)
+    }
+}
+
+
+extension Dictionary where Key == String, Value == [UserItemCellType] {
+    func key(at position: Int) -> String {
+        keys[index(startIndex, offsetBy: position)]
+    }
+
+    func values(at position: Int) -> Value? {
+        self[key(at: position)]
+    }
+
+    func value(at index: IndexPath) -> UserItemCellType? {
+        let values = self[key(at: index.section)]
+        return values?[index.row]
+    }
+
+    var lastSectionValues: [UserItemCellType]? {
+        guard let lastKey = keys.sorted().reversed().first else { return nil }
+        return self[lastKey]
+    }
+
+    var sortedAlphabetically: [String: [UserItemCellType]] {
+        let sortedKeys = keys.sorted()
+        var newDictionary: [String: [UserItemCellType]] = [:]
+
+        for key in sortedKeys {
+            if let values = self[key] {
+                newDictionary[key] = values
+            }
+        }
+
+        return newDictionary
     }
 }

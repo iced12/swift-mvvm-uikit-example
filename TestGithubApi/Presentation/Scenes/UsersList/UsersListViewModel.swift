@@ -7,32 +7,23 @@
 
 import Foundation
 
-enum UserItemCellType {
-    case userCellType(UserItemCellViewModel)
-    case loader
-}
-
-extension UserItemCellType: Equatable {
-    static func == (lhs: UserItemCellType, rhs: UserItemCellType) -> Bool {
-        switch (lhs, rhs) {
-        case (.loader, .loader): return true
-        case (.userCellType(_), .userCellType(_)): return true
-        default: return false
-        }
-    }
-}
-
 final class UsersListViewModel {
-    var userItemCells: [UserItemCellType] = []
+    var userItemCells: [String: [UserItemCellType]] = [:]
+    var sortedKeys: [String] = []
     var totalUserCount: Int = 0
     var isIncompleteList: Bool = false
     var isFetching: Bool = false
     var currentPageFetched: Int = 1
 
     private let userListUseCase: FetchUserListUseCase
+    private let sortUserItemsUseCase: SortUserItemsUseCase
 
-    init(userListUseCase: FetchUserListUseCase) {
+    init(
+        userListUseCase: FetchUserListUseCase,
+        sortUserItemsUseCase: SortUserItemsUseCase
+    ) {
         self.userListUseCase = userListUseCase
+        self.sortUserItemsUseCase = sortUserItemsUseCase
     }
 }
 
@@ -55,7 +46,7 @@ extension UsersListViewModel {
                 self?.totalUserCount = response.total_count
                 self?.isIncompleteList = response.incomplete_results
 
-                self?.appendItemsAlphabetically(response.items)
+                self?.sort(newItems: response.items)
 
                 if !response.incomplete_results {
                     self?.appendLoaderItem()
@@ -84,23 +75,25 @@ extension UsersListViewModel {
 }
 
 private extension UsersListViewModel {
-    func appendItemsAlphabetically(_ items: [User]) {
-        //TODO sort
-        userItemCells.removeAll { cellType in
-            cellType == .loader
-        }
-        let cells = items
-            .map { UserItemCellViewModel(user: $0) }
-            .map { UserItemCellType.userCellType($0) }
-
-        userItemCells.append(contentsOf: cells)
+    func sort(newItems: [User]) {
+        clearLoaderItem()
+        userItemCells = sortUserItemsUseCase
+            .sortAlphabetically(dictionary: userItemCells, with: newItems)
+        sortedKeys = userItemCells.keys.sorted()
     }
 
     func appendLoaderItem() {
-        userItemCells.append(.loader)
+        var lastSection = userItemCells.lastSectionValues
+        lastSection?.append(.loader)
+    }
+
+    func clearLoaderItem() {
+        var lastSection = userItemCells.lastSectionValues
+        lastSection?.removeAll { $0 == .loader }
     }
 }
 
 private enum Constants {
     static let githubUserName: String = "lagos"
+    static let loaderSectionKey: String = "!LoaderSection"
 }
