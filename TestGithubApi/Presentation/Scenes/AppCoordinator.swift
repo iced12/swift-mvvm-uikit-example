@@ -24,7 +24,6 @@ private extension AppCoordinator {
         initialView.coordinatorDelegate = self
 
         mainNavController = UINavigationController(rootViewController: initialView)
-        print("..::", #function, initialView.coordinatorDelegate)
 
         mainWindow?.rootViewController = mainNavController
         mainWindow?.makeKeyAndVisible()
@@ -33,7 +32,6 @@ private extension AppCoordinator {
 
     func navigateToUserDetails(with user: User) {
         let userDetailsView = MainContainer.makeUserDetailsView(with: user)
-//        mainNavController?.present(userDetailsView, animated: true)
         mainNavController?.pushViewController(userDetailsView, animated: true)
     }
 }
@@ -42,13 +40,10 @@ private extension AppCoordinator {
 
 extension AppCoordinator: UsersListCoordinatorDelegate {
     func didSelect(user: User) {
-        print(self, #function)
         navigateToUserDetails(with: user)
     }
 }
 
 // MARK - User Details View Coordination
 
-extension AppCoordinator {
-}
-
+extension AppCoordinator {}

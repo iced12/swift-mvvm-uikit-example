@@ -48,12 +48,6 @@ final class UsersListViewController: UIViewController {
 
         fetchList()
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        mainView.setNeedsLayout()
-        mainView.layoutSubviews()
-        print(#function, mainView.frame, mainView.tableView.frame)
-    }
 }
 
 // MARK - ViewModel methods
@@ -76,32 +70,19 @@ private extension UsersListViewController {
         registerTableView()
     }
 
-    func bindView() {
-    }
-
     func updateUsersList() {
         DispatchQueue.main.async { [unowned self] in
             self.mainView.updateUsersList()
         }
     }
-
-    func showError() {
-    }
 }
 
-// MARK - Selectors
-
-private extension UsersListViewController {
-    @objc func buttonPressed() {
-        print(#function)
-    }
-}
 
 // MARK - Error handling
 
 private extension UsersListViewController {
     func handleError(error: RestClientError?) {
-        //
+        //TODO handle errors and show in mainView
     }
 }
 

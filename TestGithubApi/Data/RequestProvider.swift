@@ -49,14 +49,6 @@ private extension RequestProviderImpl {
         request.httpMethod = method.rawValue
         request.httpBody = body
 
-        print("\n")
-        print(request.httpMethod!.uppercased(), request.debugDescription.removingPercentEncoding!)
-        print(request.allHTTPHeaderFields ?? [])
-        if let body = body {
-            let bodyString = NSString(data: body, encoding: String.Encoding.utf8.rawValue)
-            print(bodyString)
-        }
-        print("\n")
         return request
     }
 }

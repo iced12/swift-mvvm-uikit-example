@@ -12,7 +12,6 @@ final class UsersListViewModel {
     var sortedKeys: [String] = []
     var totalUserCount: Int = 0
     var isIncompleteList: Bool = false
-    var isFetching: Bool = false
     var currentPageFetched: Int = 1
 
     private let userListUseCase: FetchUserListUseCase
@@ -32,14 +31,12 @@ extension UsersListViewModel {
         onSuccess: @escaping () -> Void,
         onError: @escaping (RestClientError?) -> Void
     ) {
-        isFetching = true
         userListUseCase.fetchUsers(
             userName: Constants.githubUserName,
             at: currentPageFetched,
             onSuccess: { [weak self] response in
-                self?.isFetching = false
                 guard let response = response else {
-                    assertionFailure("Fetch Users response body should not be nil")
+                    assertionFailure("Fetch Users response body should not be nil in this case")
                     onSuccess()
                     return
                 }
@@ -52,13 +49,9 @@ extension UsersListViewModel {
                     self?.appendLoaderItem()
                 }
 
-                print("..:: fetched:", self?.userItemCells.count, self?.totalUserCount, self?.isIncompleteList)
                 onSuccess()
             },
-            onError: { [weak self] error in
-                self?.isFetching = false
-                onError(error)
-            }
+            onError: onError
         )
     }
 
