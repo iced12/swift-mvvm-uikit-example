@@ -25,18 +25,12 @@ final class UserItemCell: UITableViewCell {
 
 extension UserItemCell {
     func setup(with viewModel: UserItemCellViewModel) {
-        print(#function, viewModel.user.login)
         cellView.setup(with: viewModel)
     }
 }
 
 private extension UserItemCell {
     func setupCellView() {
-        print(#function)
         contentView.addSubview(cellView)
-        let constraints = cellView.anchorAll(to: contentView)
-        NSLayoutConstraint.activate(constraints)
-
-        cellView.setupView()
     }
 }

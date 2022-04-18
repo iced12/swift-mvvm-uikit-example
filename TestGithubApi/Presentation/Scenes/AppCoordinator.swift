@@ -9,12 +9,11 @@ import Foundation
 import UIKit
 
 final class AppCoordinator {
-    private var mainWindow: UIWindow?
-    private let mainScene: UIWindowScene
+    private let mainWindow: UIWindow?
     private var mainNavController: UINavigationController?
 
-    init(mainScene: UIWindowScene) {
-        self.mainScene = mainScene
+    init(window: UIWindow?) {
+        self.mainWindow = window
         startCoordinator()
     }
 }
@@ -22,10 +21,34 @@ final class AppCoordinator {
 private extension AppCoordinator {
     func startCoordinator() {
         let initialView = MainContainer.makeUserListView()
-        mainNavController = UINavigationController(rootViewController: initialView)
+        initialView.coordinatorDelegate = self
 
-        mainWindow = UIWindow(windowScene: mainScene)
+        mainNavController = UINavigationController(rootViewController: initialView)
+        print("..::", #function, initialView.coordinatorDelegate)
+
         mainWindow?.rootViewController = mainNavController
         mainWindow?.makeKeyAndVisible()
+
+    }
+
+    func navigateToUserDetails(with user: User) {
+        let userDetailsView = MainContainer.makeUserDetailsView(with: user)
+//        mainNavController?.present(userDetailsView, animated: true)
+        mainNavController?.pushViewController(userDetailsView, animated: true)
     }
 }
+
+// MARK - Users List View Coordination
+
+extension AppCoordinator: UsersListCoordinatorDelegate {
+    func didSelect(user: User) {
+        print(self, #function)
+        navigateToUserDetails(with: user)
+    }
+}
+
+// MARK - User Details View Coordination
+
+extension AppCoordinator {
+}
+

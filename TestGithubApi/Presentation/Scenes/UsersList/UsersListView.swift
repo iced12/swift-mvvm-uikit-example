@@ -18,17 +18,10 @@ final class UsersListView: UIView {
     @UsesAutoLayout
     var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
-        tableView.showsVerticalScrollIndicator = false
-        tableView.separatorStyle = .none
         tableView.rowHeight = UITableView.automaticDimension
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.backgroundColor = .red
+        tableView.backgroundColor = .white
         return tableView
     }()
-
-    override func didMoveToSuperview() {
-        setup()
-    }
 
     func setup() {
         addSubview(tableView)
@@ -38,7 +31,7 @@ final class UsersListView: UIView {
         backgroundColor = .white
 
         setupTableView()
-        registerTableView()
+//        registerTableView()
     }
 
     func setup(with viewModel: UsersListViewModel) {
@@ -53,46 +46,6 @@ extension UsersListView {
     }
 }
 
-// MARK - TableView
-
-extension UsersListView: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-    }
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        "Header"
-    }
-}
-
-extension UsersListView: UITableViewDataSource {
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10//viewModel?.userItems.count ?? 0
-    }
-
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cellViewModel = viewModel?.userItems[safe: indexPath.row] else {
-            return UITableViewCell()
-        }
-
-        let cell = tableView.getCell(ofType: UserItemCell.self)
-        cell.setup(with: cellViewModel)
-        return cell
-    }
-}
-
-private extension UsersListView {
-    func registerTableView() {
-        tableView.delegate = self
-        tableView.dataSource = self
-
-        tableView.registerCell(ofType: UserItemCell.self)
-    }
-}
-
 // MARK - Layout
 
 private extension UsersListView {
@@ -101,7 +54,9 @@ private extension UsersListView {
             tableView.heightAnchor.constraint(equalToConstant: 800),
             tableView.widthAnchor.constraint(equalToConstant: 375),
             tableView.topAnchor.constraint(equalTo: self.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: self.leftAnchor),
+            tableView.leftAnchor.constraint(equalTo: self.leftAnchor)
+//            tableView.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10),
+//            tableView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -10),
         ]
         NSLayoutConstraint.activate(constraints)
     }

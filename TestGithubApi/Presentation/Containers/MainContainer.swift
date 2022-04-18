@@ -26,4 +26,11 @@ final class MainContainer {
             viewModel: UsersListViewModel(userListUseCase: fetchUserListUseCase)
             )
     }
+
+    static func makeUserDetailsView(with user: User) -> UserDetailsViewController {
+        return UserDetailsViewController(
+            view: UserDetailsView(),
+            viewModel: UserDetailsViewModel(user: user)
+        )
+    }
 }

@@ -32,7 +32,17 @@ final class UserItemCellView: UIView {
         return button
     }()
 
+    override func didMoveToSuperview() {
+        //TODO move to base View
+        guard let superview = superview else { return }
+        let constraints = anchorAll(to: superview)
+        NSLayoutConstraint.activate(constraints)
+
+        setupView()
+    }
+
     func setupView() {
+        addViews()
         setupImageView()
         setupTitleLabel()
         setupFavButton()
@@ -47,8 +57,13 @@ final class UserItemCellView: UIView {
 // MARK - Layout
 
 private extension UserItemCellView {
-    func setupImageView() {
+    func addViews() {
         addSubview(imageView)
+        addSubview(titleLabel)
+        addSubview(favButton)
+    }
+
+    func setupImageView() {
         let constraints = [
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: Constants.commonMargin),
             imageView.leftAnchor.constraint(equalTo: leftAnchor, constant: Constants.commonMargin),
@@ -60,7 +75,6 @@ private extension UserItemCellView {
     }
 
     func setupTitleLabel() {
-        addSubview(titleLabel)
         let constraints = [
             titleLabel.leftAnchor.constraint(equalTo: imageView.rightAnchor, constant: Constants.commonMargin),
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor)
@@ -69,7 +83,6 @@ private extension UserItemCellView {
     }
 
     func setupFavButton() {
-        addSubview(favButton)
         let constraints = [
             favButton.leftAnchor.constraint(equalTo: titleLabel.rightAnchor, constant: Constants.commonMargin),
             favButton.rightAnchor.constraint(equalTo: rightAnchor, constant: -Constants.commonMargin),
@@ -78,7 +91,6 @@ private extension UserItemCellView {
             favButton.heightAnchor.constraint(equalToConstant: Constants.imageViewSize)
         ]
         NSLayoutConstraint.activate(constraints)
-
     }
 }
 

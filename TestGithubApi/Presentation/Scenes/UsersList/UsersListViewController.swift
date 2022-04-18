@@ -9,12 +9,17 @@ import Foundation
 import UIKit
 
 private extension Selector {
-    static let buttonPressed = #selector(UsersListViewController.buttonPressed)
+}
+
+protocol UsersListCoordinatorDelegate: AnyObject {
+    func didSelect(user: User)
 }
 
 final class UsersListViewController: UIViewController {
     private let mainView: UsersListView
     private let viewModel: UsersListViewModel
+
+    var coordinatorDelegate: UsersListCoordinatorDelegate?
 
     init(view: UsersListView, viewModel: UsersListViewModel) {
         self.mainView = view
@@ -39,38 +44,43 @@ final class UsersListViewController: UIViewController {
         setupView()
         bindView()
 
+        title = "Users"
+
         fetchList()
     }
 
     override func viewDidAppear(_ animated: Bool) {
+        mainView.setNeedsLayout()
+        mainView.layoutSubviews()
         print(#function, mainView.frame, mainView.tableView.frame)
     }
 }
 
-// MARK - Call ViewModel methods
+// MARK - ViewModel methods
 
 private extension UsersListViewController {
     func fetchList() {
         viewModel.fetchList(
-            onSuccess: showUsersList,
+            onSuccess: updateUsersList,
             onError: handleError
         )
     }
 }
 
-// MARK - Call View methods
+// MARK - View methods
 
 private extension UsersListViewController {
     func setupView() {
         mainView.setupView()
         mainView.setup(with: viewModel)
+        registerTableView()
     }
 
     func bindView() {
-//        mainView.button.addTarget(self, action: .buttonPressed, for: .touchUpInside)
+        //        mainView.button.addTarget(self, action: .buttonPressed, for: .touchUpInside)
     }
 
-    func showUsersList() {
+    func updateUsersList() {
         DispatchQueue.main.async { [unowned self] in
             self.mainView.updateUsersList()
         }
@@ -97,3 +107,72 @@ private extension UsersListViewController {
     }
 }
 
+// MARK - TableView
+private extension UsersListViewController {
+    func registerTableView() {
+        mainView.tableView.delegate = self
+        mainView.tableView.dataSource = self
+
+        mainView.tableView.registerCell(ofType: UserItemCell.self)
+        mainView.tableView.registerCell(ofType: LoaderCell.self)
+    }
+}
+
+extension UsersListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cellType = viewModel.userItemCells[safe: indexPath.row] else { return }
+        if case let .userCellType(cellViewModel) = cellType {
+            didSelect(user: cellViewModel.user)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        "Header"
+    }
+}
+
+extension UsersListViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return viewModel.userItemCells.count
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cellType = viewModel.userItemCells[safe: indexPath.row] else {
+            return UITableViewCell()
+        }
+        switch cellType {
+        case let .userCellType(cellViewModel):
+            let cell = tableView.getCell(ofType: UserItemCell.self)
+            cell.setup(with: cellViewModel)
+            return cell
+        case .loader:
+            return tableView.getCell(ofType: LoaderCell.self)
+        }
+    }
+
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        //TODO also check sections after sorting alphabetically
+        let totalItems = viewModel.userItemCells.count - 1
+
+        let isLast = indexPath.row == totalItems
+
+        if isLast {
+            viewModel.fetchNextPage(
+                onSuccess: updateUsersList,
+                onError: handleError
+            )
+        }
+    }
+}
+
+// MARK - Navigation
+
+private extension UsersListViewController {
+    func didSelect(user: User) {
+        coordinatorDelegate?.didSelect(user: user)
+    }
+}

@@ -17,14 +17,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
-//        _ = AppCoordinator(mainScene: windowScene)
-        let initialView = MainContainer.makeUserListView()
-        let nav = UINavigationController(rootViewController: initialView)
-
         window = UIWindow(windowScene: windowScene)
-//        window = UIWindow(frame: windowScene.coordinateSpace.bounds)
-        window?.rootViewController = nav
-        window?.makeKeyAndVisible()
+        _ = AppCoordinator(window: window)
+
+        UserDefaults.standard.set(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
