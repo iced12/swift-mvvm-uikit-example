@@ -7,7 +7,7 @@
 
 import Foundation
 
-typealias UserListReponseResult = Result<UserListResponse?, RestClientError>
+typealias UserListReponseResult = Result<UserListResponseDto?, RestClientError>
 
 protocol UserRepository {
     func fetchUsers(

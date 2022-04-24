@@ -9,12 +9,6 @@ import Foundation
 import UIKit
 
 final class UsersListView: UIView {
-    private var viewModel: UsersListViewModel?
-    override var translatesAutoresizingMaskIntoConstraints: Bool {
-        get { false }
-        set {}
-    }
-
     @UsesAutoLayout
     var tableView: UITableView = {
         let tableView = UITableView(frame: CGRect.zero, style: .plain)
@@ -23,20 +17,15 @@ final class UsersListView: UIView {
         return tableView
     }()
 
-    func setup() {
-        addSubview(tableView)
-    }
-
     func setupView() {
         backgroundColor = .white
 
+        addSubviews()
         setupTableView()
-//        registerTableView()
     }
 
-    func setup(with viewModel: UsersListViewModel) {
-        self.viewModel = viewModel
-        //TODO
+    func addSubviews() {
+        addSubview(tableView)
     }
 }
 
@@ -51,10 +40,10 @@ extension UsersListView {
 private extension UsersListView {
     func setupTableView() {
         let constraints = [
-            tableView.heightAnchor.constraint(equalToConstant: 800),
-            tableView.widthAnchor.constraint(equalToConstant: 375),
-            tableView.topAnchor.constraint(equalTo: self.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: self.leftAnchor)
+            tableView.topAnchor.constraint(equalTo: topAnchor),
+            tableView.rightAnchor.constraint(equalTo: rightAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            tableView.leftAnchor.constraint(equalTo: leftAnchor)
         ]
         NSLayoutConstraint.activate(constraints)
     }

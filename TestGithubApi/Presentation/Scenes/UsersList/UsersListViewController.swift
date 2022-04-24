@@ -32,29 +32,27 @@ final class UsersListViewController: UIViewController {
     }
 
     override func loadView() {
-        super.loadView()
-        // TODO: move to base VC
         self.view = mainView
-        mainView.setup()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // TODO: move to base VC
         setupView()
-        bindView()
 
         title = "Users"
 
-        fetchList()
+        setupViewModel()
     }
 }
 
 // MARK - ViewModel methods
 
 private extension UsersListViewController {
-    func fetchList() {
-        viewModel.fetchList(
+    func setupViewModel() {
+        viewModel.getSyncObject()
+
+        viewModel.getInitialUsers(
             onSuccess: updateUsersList,
             onError: handleError
         )
@@ -66,7 +64,7 @@ private extension UsersListViewController {
 private extension UsersListViewController {
     func setupView() {
         mainView.setupView()
-        mainView.setup(with: viewModel)
+        //        mainView.setup(with: viewModel)
         registerTableView()
     }
 
@@ -99,7 +97,12 @@ private extension UsersListViewController {
 
 extension UsersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cellType = viewModel.userItemCells.value(at: indexPath) else { return }
+        guard
+            let key = viewModel.sortedKeys[safe: indexPath.section],
+            let values = viewModel.userItemCells[key],
+            let cellType = values[safe: indexPath.row]
+        else { return }
+        
         if case let .userCellType(cellViewModel) = cellType {
             didSelect(user: cellViewModel.user)
         }
@@ -180,7 +183,7 @@ extension Dictionary where Key == String, Value == [UserItemCellType] {
 
     func value(at index: IndexPath) -> UserItemCellType? {
         let values = self[key(at: index.section)]
-        return values?[index.row]
+        return values?[safe: index.row]
     }
 
     var lastSectionValues: [UserItemCellType]? {

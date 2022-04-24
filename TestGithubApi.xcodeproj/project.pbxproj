@@ -7,11 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F09A009281600A800B019D4 /* GetOfflineSyncObjectUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A005281600A800B019D4 /* GetOfflineSyncObjectUseCase.swift */; };
+		3F09A00A281600A800B019D4 /* GetOfflineUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A006281600A800B019D4 /* GetOfflineUsersUseCase.swift */; };
+		3F09A00B281600A800B019D4 /* UpsertOfflineUsersUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A007281600A800B019D4 /* UpsertOfflineUsersUseCase.swift */; };
+		3F09A00C281600A800B019D4 /* UpdateOfflineSyncObjectPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A008281600A800B019D4 /* UpdateOfflineSyncObjectPage.swift */; };
+		3F09A00E281600AE00B019D4 /* FetchUserListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A00D281600AE00B019D4 /* FetchUserListUseCase.swift */; };
+		3F09A011281600C100B019D4 /* OfflineRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A00F281600C100B019D4 /* OfflineRepository.swift */; };
+		3F09A012281600C100B019D4 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A010281600C100B019D4 /* UserRepository.swift */; };
+		3F09A016281600D000B019D4 /* UserDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A013281600D000B019D4 /* UserDto.swift */; };
+		3F09A017281600D000B019D4 /* OfflineSyncObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A014281600D000B019D4 /* OfflineSyncObject.swift */; };
+		3F09A018281600D000B019D4 /* UserListResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A015281600D000B019D4 /* UserListResponseDto.swift */; };
+		3F09A01A281600DA00B019D4 /* RealmRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A019281600DA00B019D4 /* RealmRepositoryImpl.swift */; };
+		3F24F2E82815FF51000D108A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3F24F2E72815FF51000D108A /* Realm */; };
+		3F24F2EA2815FF51000D108A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3F24F2E92815FF51000D108A /* RealmSwift */; };
 		3F2A94B0280BE11F00190C3B /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94AF280BE11F00190C3B /* RestClient.swift */; };
-		3F2A94B3280C004E00190C3B /* FetchUserListUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94B2280C004E00190C3B /* FetchUserListUseCase.swift */; };
-		3F2A94B5280C00B700190C3B /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94B4280C00B700190C3B /* UserRepository.swift */; };
 		3F2A94B7280C025E00190C3B /* RequestProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94B6280C025E00190C3B /* RequestProvider.swift */; };
-		3F2A94B9280C0FA800190C3B /* UserListResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94B8280C0FA800190C3B /* UserListResponse.swift */; };
 		3F2A94BB280C1EA400190C3B /* UserRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94BA280C1EA400190C3B /* UserRepositoryImpl.swift */; };
 		3F2A94C1280C2B6B00190C3B /* UIView+LayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94C0280C2B6B00190C3B /* UIView+LayoutConstraints.swift */; };
 		3F2A94C3280C2B9300190C3B /* UITableView+Cells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94C2280C2B9300190C3B /* UITableView+Cells.swift */; };
@@ -60,11 +70,19 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F09A005281600A800B019D4 /* GetOfflineSyncObjectUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOfflineSyncObjectUseCase.swift; sourceTree = "<group>"; };
+		3F09A006281600A800B019D4 /* GetOfflineUsersUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetOfflineUsersUseCase.swift; sourceTree = "<group>"; };
+		3F09A007281600A800B019D4 /* UpsertOfflineUsersUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpsertOfflineUsersUseCase.swift; sourceTree = "<group>"; };
+		3F09A008281600A800B019D4 /* UpdateOfflineSyncObjectPage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateOfflineSyncObjectPage.swift; sourceTree = "<group>"; };
+		3F09A00D281600AE00B019D4 /* FetchUserListUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchUserListUseCase.swift; sourceTree = "<group>"; };
+		3F09A00F281600C100B019D4 /* OfflineRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineRepository.swift; sourceTree = "<group>"; };
+		3F09A010281600C100B019D4 /* UserRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		3F09A013281600D000B019D4 /* UserDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDto.swift; sourceTree = "<group>"; };
+		3F09A014281600D000B019D4 /* OfflineSyncObject.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OfflineSyncObject.swift; sourceTree = "<group>"; };
+		3F09A015281600D000B019D4 /* UserListResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListResponseDto.swift; sourceTree = "<group>"; };
+		3F09A019281600DA00B019D4 /* RealmRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmRepositoryImpl.swift; sourceTree = "<group>"; };
 		3F2A94AF280BE11F00190C3B /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
-		3F2A94B2280C004E00190C3B /* FetchUserListUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchUserListUseCase.swift; sourceTree = "<group>"; };
-		3F2A94B4280C00B700190C3B /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
 		3F2A94B6280C025E00190C3B /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
-		3F2A94B8280C0FA800190C3B /* UserListResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserListResponse.swift; sourceTree = "<group>"; };
 		3F2A94BA280C1EA400190C3B /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
 		3F2A94C0280C2B6B00190C3B /* UIView+LayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+LayoutConstraints.swift"; sourceTree = "<group>"; };
 		3F2A94C2280C2B9300190C3B /* UITableView+Cells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Cells.swift"; sourceTree = "<group>"; };
@@ -105,6 +123,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F24F2EA2815FF51000D108A /* RealmSwift in Frameworks */,
+				3F24F2E82815FF51000D108A /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -125,20 +145,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F09A0032816006300B019D4 /* RemoteUserList */ = {
+			isa = PBXGroup;
+			children = (
+				3F09A00D281600AE00B019D4 /* FetchUserListUseCase.swift */,
+			);
+			path = RemoteUserList;
+			sourceTree = "<group>";
+		};
+		3F09A0042816006B00B019D4 /* OfflineUserList */ = {
+			isa = PBXGroup;
+			children = (
+				3F09A005281600A800B019D4 /* GetOfflineSyncObjectUseCase.swift */,
+				3F09A006281600A800B019D4 /* GetOfflineUsersUseCase.swift */,
+				3F09A008281600A800B019D4 /* UpdateOfflineSyncObjectPage.swift */,
+				3F09A007281600A800B019D4 /* UpsertOfflineUsersUseCase.swift */,
+			);
+			path = OfflineUserList;
+			sourceTree = "<group>";
+		};
 		3F2A94AE280B005700190C3B /* RestClient */ = {
 			isa = PBXGroup;
 			children = (
 				3F2A94AF280BE11F00190C3B /* RestClient.swift */,
 			);
 			path = RestClient;
-			sourceTree = "<group>";
-		};
-		3F2A94B1280C003E00190C3B /* UserList */ = {
-			isa = PBXGroup;
-			children = (
-				3F2A94B2280C004E00190C3B /* FetchUserListUseCase.swift */,
-			);
-			path = UserList;
 			sourceTree = "<group>";
 		};
 		3F2A94BE280C2B4D00190C3B /* Common */ = {
@@ -181,7 +212,8 @@
 		3F2A94D4280D89F700190C3B /* UseCases */ = {
 			isa = PBXGroup;
 			children = (
-				3F2A94B1280C003E00190C3B /* UserList */,
+				3F09A0042816006B00B019D4 /* OfflineUserList */,
+				3F09A0032816006300B019D4 /* RemoteUserList */,
 				3F2A94DE280DB1D800190C3B /* OrganizeUserItemsUseCase.swift */,
 			);
 			path = UseCases;
@@ -319,6 +351,8 @@
 		3F9C71582805CC4D0096E21F /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				3F09A00F281600C100B019D4 /* OfflineRepository.swift */,
+				3F09A010281600C100B019D4 /* UserRepository.swift */,
 				3F2A94D4280D89F700190C3B /* UseCases */,
 			);
 			path = Domain;
@@ -354,7 +388,7 @@
 		3F9C715E28061FD20096E21F /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
-				3F2A94B4280C00B700190C3B /* UserRepository.swift */,
+				3F09A019281600DA00B019D4 /* RealmRepositoryImpl.swift */,
 				3F2A94BA280C1EA400190C3B /* UserRepositoryImpl.swift */,
 			);
 			path = Repositories;
@@ -363,8 +397,10 @@
 		3F9C715F28061FD70096E21F /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3F09A014281600D000B019D4 /* OfflineSyncObject.swift */,
+				3F09A013281600D000B019D4 /* UserDto.swift */,
+				3F09A015281600D000B019D4 /* UserListResponseDto.swift */,
 				3F9C716028061FE10096E21F /* User.swift */,
-				3F2A94B8280C0FA800190C3B /* UserListResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -385,6 +421,10 @@
 			dependencies = (
 			);
 			name = TestGithubApi;
+			packageProductDependencies = (
+				3F24F2E72815FF51000D108A /* Realm */,
+				3F24F2E92815FF51000D108A /* RealmSwift */,
+			);
 			productName = TestGithubApi;
 			productReference = 3F9C7067280359D80096E21F /* TestGithubApi.app */;
 			productType = "com.apple.product-type.application";
@@ -457,6 +497,9 @@
 				Base,
 			);
 			mainGroup = 3F9C705E280359D80096E21F;
+			packageReferences = (
+				3F24F2E62815FF51000D108A /* XCRemoteSwiftPackageReference "realm-swift" */,
+			);
 			productRefGroup = 3F9C7068280359D80096E21F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -502,31 +545,39 @@
 				3F9C70A82805C5820096E21F /* UsersListViewModel.swift in Sources */,
 				3F2A94D9280D9E7000190C3B /* LoaderCellView.swift in Sources */,
 				3F9C7165280621AD0096E21F /* UserItemCellViewModel.swift in Sources */,
+				3F09A00E281600AE00B019D4 /* FetchUserListUseCase.swift in Sources */,
+				3F09A00B281600A800B019D4 /* UpsertOfflineUsersUseCase.swift in Sources */,
 				3F2A94B7280C025E00190C3B /* RequestProvider.swift in Sources */,
+				3F09A012281600C100B019D4 /* UserRepository.swift in Sources */,
 				3F2A94C1280C2B6B00190C3B /* UIView+LayoutConstraints.swift in Sources */,
-				3F2A94B5280C00B700190C3B /* UserRepository.swift in Sources */,
+				3F09A017281600D000B019D4 /* OfflineSyncObject.swift in Sources */,
+				3F09A016281600D000B019D4 /* UserDto.swift in Sources */,
 				3F2A94D1280D78FE00190C3B /* UserDetailsView.swift in Sources */,
 				3F9C715D28061D4F0096E21F /* UserItemCell.swift in Sources */,
 				3F2A94CA280C334100190C3B /* MainContainer.swift in Sources */,
 				3F3F4194280DD8E400900287 /* UserItemCellType.swift in Sources */,
 				3F2A94C5280C2F1400190C3B /* Collection+Safe.swift in Sources */,
 				3F2A94CF280D78F800190C3B /* UserDetailsViewController.swift in Sources */,
+				3F09A018281600D000B019D4 /* UserListResponseDto.swift in Sources */,
 				3F9C7163280621A30096E21F /* UserItemCellView.swift in Sources */,
 				3F2A94BB280C1EA400190C3B /* UserRepositoryImpl.swift in Sources */,
 				3F2A94CC280D70F600190C3B /* UsesAutoLayout.swift in Sources */,
 				3F9C706B280359D80096E21F /* AppDelegate.swift in Sources */,
 				3F2A94D3280D790300190C3B /* UserDetailsViewModel.swift in Sources */,
-				3F2A94B9280C0FA800190C3B /* UserListResponse.swift in Sources */,
+				3F09A00C281600A800B019D4 /* UpdateOfflineSyncObjectPage.swift in Sources */,
+				3F09A01A281600DA00B019D4 /* RealmRepositoryImpl.swift in Sources */,
 				3F9C70A62805C5750096E21F /* UsersListViewController.swift in Sources */,
 				3F9C706D280359D80096E21F /* SceneDelegate.swift in Sources */,
 				3F2A94DF280DB1D800190C3B /* OrganizeUserItemsUseCase.swift in Sources */,
 				3F2A94D7280D9E6500190C3B /* LoaderCell.swift in Sources */,
 				3F9C70A42805C56D0096E21F /* UsersListView.swift in Sources */,
-				3F2A94B3280C004E00190C3B /* FetchUserListUseCase.swift in Sources */,
 				3F2A94C7280C2FAF00190C3B /* AppCoordinator.swift in Sources */,
+				3F09A009281600A800B019D4 /* GetOfflineSyncObjectUseCase.swift in Sources */,
 				3F2A94C3280C2B9300190C3B /* UITableView+Cells.swift in Sources */,
 				3F2A94B0280BE11F00190C3B /* RestClient.swift in Sources */,
+				3F09A011281600C100B019D4 /* OfflineRepository.swift in Sources */,
 				3F9C716128061FE10096E21F /* User.swift in Sources */,
+				3F09A00A281600A800B019D4 /* GetOfflineUsersUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -858,6 +909,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3F24F2E62815FF51000D108A /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3F24F2E72815FF51000D108A /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F24F2E62815FF51000D108A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		3F24F2E92815FF51000D108A /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3F24F2E62815FF51000D108A /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3F9C705F280359D80096E21F /* Project object */;
 }

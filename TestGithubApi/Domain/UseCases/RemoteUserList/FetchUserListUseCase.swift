@@ -11,7 +11,7 @@ protocol FetchUserListUseCase {
     func fetchUsers(
         userName: String,
         at page: Int,
-        onSuccess: @escaping (UserListResponse?) -> Void,
+        onSuccess: @escaping (UserListResponseDto?) -> Void,
         onError: @escaping (RestClientError?) -> Void
     )
 }
@@ -26,7 +26,7 @@ final class FetchUserListUseCaseImpl: FetchUserListUseCase {
     func fetchUsers(
         userName: String,
         at page: Int,
-        onSuccess: @escaping (UserListResponse?) -> Void,
+        onSuccess: @escaping (UserListResponseDto?) -> Void,
         onError: @escaping (RestClientError?) -> Void
     ) {
         repository.fetchUsers(userName: userName, at: page) { result in

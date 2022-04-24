@@ -26,8 +26,10 @@ final class UserRepositoryImpl: UserRepository {
     ) {
         guard let request = requestProvider.makeUserListRequest(for: userName, at: page) else { return }
 
-        restClient.execute(request: request, with: UserListResponse.self) { result in
-            onComplete(result)
+        restClient.execute(request: request, with: UserListResponseDto.self) { result in
+            DispatchQueue.main.async {
+                onComplete(result)
+            }
         }
     }
 }

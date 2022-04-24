@@ -8,7 +8,7 @@
 import Foundation
 
 public enum RestClientError: Error {
-    case jsonParse
+    case jsonParse(className: String)
     case network(statusCode: Int)
     case unknown(Error?)
 
@@ -16,8 +16,8 @@ public enum RestClientError: Error {
         switch self{
         case let .unknown(error):
             return error?.localizedDescription ?? "Generic error message"
-        case .jsonParse:
-            return "An Error ocurred while parsing Json"
+        case let .jsonParse(className):
+            return "An Error ocurred while parsing Json for class: \(className)"
         case let .network(statusCode):
             return "Network error with Http status code: \(statusCode)"
         }
@@ -81,7 +81,7 @@ private extension JSONDecoder {
             let model = try decode(T.self, from: data)
             return .success(model)
         } catch {
-            return .failure(.jsonParse)
+            return .failure(.jsonParse(className: String(describing: T.self)))
         }
     }
 }
