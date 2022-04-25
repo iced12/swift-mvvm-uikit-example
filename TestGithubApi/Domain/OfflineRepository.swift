@@ -13,5 +13,7 @@ protocol OfflineRepository {
     func update(syncObject: OfflineSyncObject, with latestPage: Int)
 
     func getAllUsers(onComplete: @escaping (Results<User>) -> Void)
-    func upsert(users: [UserDto])
+    func upsert(users: [UserDto], onComplete: @escaping ([User]) -> Void)
+
+    func toggleFavorite(user: User)
 }

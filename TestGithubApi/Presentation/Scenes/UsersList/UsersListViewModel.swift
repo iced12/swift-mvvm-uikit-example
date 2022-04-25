@@ -8,6 +8,14 @@
 import Foundation
 import RealmSwift
 
+/**
+Caching strategy is a complex topic and takes some time to analyze and implement.
+In case of this project, since it's "Offline first" I will go with the approach to always check the offline data first,
+and only when the user scrolls down to the last available item offline, then the app will fetch next items.
+This approach is obviously not the best for a real world application :)
+*/
+
+
 final class UsersListViewModel {
     var userItemCells: [String: [UserItemCellType]] = [:]
     var sortedKeys: [String] = []
@@ -16,8 +24,10 @@ final class UsersListViewModel {
 
     private var currentPageFetched: Int = 1
 
-    // Properly there should be somekind of manager to manage the state of synchronization between local DB and remote
-    // Either to use to Sync feature of MongoDB or else at least to have a property of last sync / last changed
+    /**
+    Properly there should be somekind of manager to manage the state of synchronization between local DB and remote
+    Either to use to Sync feature of MongoDB or else at least to have a property of last sync / last changed
+    */
     private var syncObject: OfflineSyncObject?
 
     private let userListUseCase: FetchUserListUseCase
@@ -112,11 +122,11 @@ private extension UsersListViewModel {
                     self?.appendLoaderItem()
                 }
 
-                self?.upsertOfflineUsersUseCase.upsertUsers(response.items)
                 self?.updateSyncObject()
-
-                self?.append(newUsers: response.items.map { $0.toRealmUser })
-                onSuccess()
+                self?.upsertOfflineUsersUseCase.upsertUsers(response.items) { [weak self] users in
+                    self?.append(newUsers: users)
+                    onSuccess()
+                }
             },
             onError: onError
         )

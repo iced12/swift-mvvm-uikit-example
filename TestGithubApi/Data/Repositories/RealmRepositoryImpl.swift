@@ -55,17 +55,24 @@ extension RealmRepositoryImpl {
             let realm = try! Realm()
             let results = realm.objects(User.self)
             onComplete(results)
-
         }
     }
 
-    func upsert(users: [UserDto]) {
+    func upsert(users: [UserDto], onComplete: @escaping ([User]) -> Void) {
         DispatchQueue.main.async {
-            let Users = users.map { $0.toRealmUser }
+            let realmUsers = users.map { $0.toRealmUser }
             let realm = try! Realm()
             try! realm.write {
-                realm.add(Users, update: .modified)
+                realm.add(realmUsers, update: .modified)
             }
+
+            var newUsers: [User?] = []
+            let searchUserIds = users.map { $0.id }
+            for id in searchUserIds {
+                let user = realm.object(ofType: User.self, forPrimaryKey: id)
+                newUsers.append(user)
+            }
+            onComplete(newUsers.compactMap { $0 })
         }
     }
 

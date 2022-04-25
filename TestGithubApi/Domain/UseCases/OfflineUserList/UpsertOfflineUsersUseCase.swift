@@ -10,7 +10,8 @@ import RealmSwift
 
 protocol UpsertOfflineUsersUseCase {
     func upsertUsers(
-        _ users: [UserDto]
+        _ users: [UserDto],
+        onComplete: @escaping ([User]) -> Void
     )
 }
 
@@ -22,8 +23,9 @@ final class UpsertOfflineUsersUseCaseImpl: UpsertOfflineUsersUseCase {
     }
 
     func upsertUsers(
-        _ users: [UserDto]
+        _ users: [UserDto],
+        onComplete: @escaping ([User]) -> Void
     ) {
-        repository.upsert(users: users)
+        repository.upsert(users: users, onComplete: onComplete)
     }
 }
