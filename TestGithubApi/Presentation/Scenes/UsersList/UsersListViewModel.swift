@@ -16,7 +16,8 @@ final class UsersListViewModel {
 
     private var currentPageFetched: Int = 1
 
-    private var userResultsChangeToken: NotificationToken?
+    // Properly there should be somekind of manager to manage the state of synchronization between local DB and remote
+    // Either to use to Sync feature of MongoDB or else at least to have a property of last sync / last changed
     private var syncObject: OfflineSyncObject?
 
     private let userListUseCase: FetchUserListUseCase
@@ -25,6 +26,7 @@ final class UsersListViewModel {
     private let updateSyncObjectPageUseCase: UpdateOfflineSyncObjectPageUseCase
     private let getOfflineUsersUseCase: GetOfflineUsersUseCase
     private let upsertOfflineUsersUseCase: UpsertOfflineUsersUseCase
+    private let favoriteUserUseCase: FavoriteUserUseCase
 
     init(
         getSyncObjectUseCase: GetOfflineSyncObjectUseCase,
@@ -32,7 +34,8 @@ final class UsersListViewModel {
         getOfflineUsersUseCase: GetOfflineUsersUseCase,
         upsertOfflineUsersUseCase: UpsertOfflineUsersUseCase,
         userListUseCase: FetchUserListUseCase,
-        sortUserItemsUseCase: SortUserItemsUseCase
+        sortUserItemsUseCase: SortUserItemsUseCase,
+        favoriteUserUseCase: FavoriteUserUseCase
     ) {
         self.getSyncObjectUseCase = getSyncObjectUseCase
         self.updateSyncObjectPageUseCase = updateSyncObjectPageUseCase
@@ -41,6 +44,7 @@ final class UsersListViewModel {
 
         self.userListUseCase = userListUseCase
         self.sortUserItemsUseCase = sortUserItemsUseCase
+        self.favoriteUserUseCase = favoriteUserUseCase
     }
 }
 
@@ -57,8 +61,6 @@ extension UsersListViewModel {
         onError: @escaping (RestClientError?) -> Void
     ) {
         getOfflineUsersUseCase.getUsers { [weak self] results in
-            self?.observe(results)
-
             let users: [User] = results.map { $0 }
 
             if users.count > 0 {
@@ -83,15 +85,13 @@ extension UsersListViewModel {
         }
         fetchList(onSuccess: onSuccess, onError: onError)
     }
+
+    func toggleFavorite(user: User) {
+        favoriteUserUseCase.toggleFavorite(user: user)
+    }
 }
 
 private extension UsersListViewModel {
-    func observe(_ results: Results<User>) {
-        userResultsChangeToken = results.observe { [weak self] (changes: RealmCollectionChange) in
-            //TODO update favorites, images
-        }
-    }
-
     func fetchList(
         onSuccess: @escaping () -> Void,
         onError: @escaping (RestClientError?) -> Void

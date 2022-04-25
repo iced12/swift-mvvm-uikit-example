@@ -30,6 +30,7 @@ final class MainContainer {
         let updateSyncObjectPageUseCase = UpdateOfflineSyncObjectPageUseCaseImpl(repository: offlineRepository)
         let getOfflineUsersUseCase = GetOfflineUsersUseCaseImpl(repository: offlineRepository)
         let upsertOfflineUsersUseCase = UpsertOfflineUsersUseCaseImpl(repository: offlineRepository)
+        let favoriteUserUseCase = FavoriteUserUseCaseImpl(repository: offlineRepository)
 
         let fetchUserListUseCase = FetchUserListUseCaseImpl(repository: userRepository)
         let sortUserUseCase = SortUserItemsUseCaseImpl()
@@ -42,7 +43,8 @@ final class MainContainer {
                 getOfflineUsersUseCase: getOfflineUsersUseCase,
                 upsertOfflineUsersUseCase: upsertOfflineUsersUseCase,
                 userListUseCase: fetchUserListUseCase,
-                sortUserItemsUseCase: sortUserUseCase
+                sortUserItemsUseCase: sortUserUseCase,
+                favoriteUserUseCase: favoriteUserUseCase                
             )
         )
     }

@@ -19,6 +19,7 @@
 		3F09A018281600D000B019D4 /* UserListResponseDto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A015281600D000B019D4 /* UserListResponseDto.swift */; };
 		3F09A01A281600DA00B019D4 /* RealmRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A019281600DA00B019D4 /* RealmRepositoryImpl.swift */; };
 		3F09A0262816DDDB00B019D4 /* SortUserItemsUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A0252816DDDB00B019D4 /* SortUserItemsUseCaseTests.swift */; };
+		3F09A0282817065C00B019D4 /* FavoriteUserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F09A0272817065C00B019D4 /* FavoriteUserUseCase.swift */; };
 		3F24F2E82815FF51000D108A /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 3F24F2E72815FF51000D108A /* Realm */; };
 		3F24F2EA2815FF51000D108A /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 3F24F2E92815FF51000D108A /* RealmSwift */; };
 		3F2A94B0280BE11F00190C3B /* RestClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2A94AF280BE11F00190C3B /* RestClient.swift */; };
@@ -49,7 +50,6 @@
 		3F9C70A82805C5820096E21F /* UsersListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C70A72805C5820096E21F /* UsersListViewModel.swift */; };
 		3F9C715D28061D4F0096E21F /* UserItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C715C28061D4F0096E21F /* UserItemCell.swift */; };
 		3F9C716128061FE10096E21F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C716028061FE10096E21F /* User.swift */; };
-		3F9C7163280621A30096E21F /* UserItemCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C7162280621A30096E21F /* UserItemCellView.swift */; };
 		3F9C7165280621AD0096E21F /* UserItemCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F9C7164280621AD0096E21F /* UserItemCellViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -83,6 +83,7 @@
 		3F09A015281600D000B019D4 /* UserListResponseDto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListResponseDto.swift; sourceTree = "<group>"; };
 		3F09A019281600DA00B019D4 /* RealmRepositoryImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmRepositoryImpl.swift; sourceTree = "<group>"; };
 		3F09A0252816DDDB00B019D4 /* SortUserItemsUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SortUserItemsUseCaseTests.swift; sourceTree = "<group>"; };
+		3F09A0272817065C00B019D4 /* FavoriteUserUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteUserUseCase.swift; sourceTree = "<group>"; };
 		3F2A94AF280BE11F00190C3B /* RestClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestClient.swift; sourceTree = "<group>"; };
 		3F2A94B6280C025E00190C3B /* RequestProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestProvider.swift; sourceTree = "<group>"; };
 		3F2A94BA280C1EA400190C3B /* UserRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepositoryImpl.swift; sourceTree = "<group>"; };
@@ -116,7 +117,6 @@
 		3F9C71552805C80B0096E21F /* GitHubApiData */ = {isa = PBXFileReference; lastKnownFileType = folder; path = GitHubApiData; sourceTree = "<group>"; };
 		3F9C715C28061D4F0096E21F /* UserItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCell.swift; sourceTree = "<group>"; };
 		3F9C716028061FE10096E21F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		3F9C7162280621A30096E21F /* UserItemCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCellView.swift; sourceTree = "<group>"; };
 		3F9C7164280621AD0096E21F /* UserItemCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItemCellViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -162,6 +162,7 @@
 				3F09A006281600A800B019D4 /* GetOfflineUsersUseCase.swift */,
 				3F09A008281600A800B019D4 /* UpdateOfflineSyncObjectPage.swift */,
 				3F09A007281600A800B019D4 /* UpsertOfflineUsersUseCase.swift */,
+				3F09A0272817065C00B019D4 /* FavoriteUserUseCase.swift */,
 			);
 			path = OfflineUserList;
 			sourceTree = "<group>";
@@ -381,7 +382,6 @@
 			isa = PBXGroup;
 			children = (
 				3F9C715C28061D4F0096E21F /* UserItemCell.swift */,
-				3F9C7162280621A30096E21F /* UserItemCellView.swift */,
 				3F9C7164280621AD0096E21F /* UserItemCellViewModel.swift */,
 				3F3F4193280DD8E400900287 /* UserItemCellType.swift */,
 			);
@@ -556,13 +556,13 @@
 				3F09A017281600D000B019D4 /* OfflineSyncObject.swift in Sources */,
 				3F09A016281600D000B019D4 /* UserDto.swift in Sources */,
 				3F2A94D1280D78FE00190C3B /* UserDetailsView.swift in Sources */,
+				3F09A0282817065C00B019D4 /* FavoriteUserUseCase.swift in Sources */,
 				3F9C715D28061D4F0096E21F /* UserItemCell.swift in Sources */,
 				3F2A94CA280C334100190C3B /* MainContainer.swift in Sources */,
 				3F3F4194280DD8E400900287 /* UserItemCellType.swift in Sources */,
 				3F2A94C5280C2F1400190C3B /* Collection+Safe.swift in Sources */,
 				3F2A94CF280D78F800190C3B /* UserDetailsViewController.swift in Sources */,
 				3F09A018281600D000B019D4 /* UserListResponseDto.swift in Sources */,
-				3F9C7163280621A30096E21F /* UserItemCellView.swift in Sources */,
 				3F2A94BB280C1EA400190C3B /* UserRepositoryImpl.swift in Sources */,
 				3F2A94CC280D70F600190C3B /* UsesAutoLayout.swift in Sources */,
 				3F9C706B280359D80096E21F /* AppDelegate.swift in Sources */,

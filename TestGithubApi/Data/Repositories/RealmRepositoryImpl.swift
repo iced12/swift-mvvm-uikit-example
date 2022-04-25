@@ -66,7 +66,17 @@ extension RealmRepositoryImpl {
             try! realm.write {
                 realm.add(Users, update: .modified)
             }
+        }
+    }
 
+    func toggleFavorite(user: User) {
+        //TODO make user thread safe!!
+        let fav = !user.isFavorite
+        DispatchQueue.main.async {
+            let realm = try! Realm()
+            try! realm.write {
+                user.isFavorite = fav
+            }
         }
     }
 }

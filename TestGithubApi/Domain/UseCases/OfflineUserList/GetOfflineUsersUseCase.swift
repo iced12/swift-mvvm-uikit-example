@@ -17,9 +17,7 @@ protocol GetOfflineUsersUseCase {
 final class GetOfflineUsersUseCaseImpl: GetOfflineUsersUseCase {
     private let repository: OfflineRepository
 
-    init(
-        repository: OfflineRepository
-    ) {
+    init(repository: OfflineRepository) {
         self.repository = repository
     }
 

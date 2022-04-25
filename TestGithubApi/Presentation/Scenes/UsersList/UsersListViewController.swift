@@ -102,7 +102,7 @@ extension UsersListViewController: UITableViewDelegate {
             let values = viewModel.userItemCells[key],
             let cellType = values[safe: indexPath.row]
         else { return }
-        
+
         if case let .userCellType(cellViewModel) = cellType {
             didSelect(user: cellViewModel.user)
         }
@@ -140,6 +140,7 @@ extension UsersListViewController: UITableViewDataSource {
         case let .userCellType(cellViewModel):
             let cell = tableView.getCell(ofType: UserItemCell.self)
             cell.setup(with: cellViewModel)
+            cell.delegate = self
             return cell
         case .loader:
             return tableView.getCell(ofType: LoaderCell.self)
@@ -160,6 +161,12 @@ extension UsersListViewController: UITableViewDataSource {
                 onError: handleError
             )
         }
+    }
+}
+
+extension UsersListViewController: UITableViewCellDelegate {
+    func favoriteButtonTapped(for user: User) {
+        viewModel.toggleFavorite(user: user)
     }
 }
 
